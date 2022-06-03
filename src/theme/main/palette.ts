@@ -1,13 +1,12 @@
 //Cores principais padronizadas no prototipo de design
 const core ={
     primary: '#E31A13',
-    secondary: '#1A1A1A', 
-          
+    secondary: '#1A1A1A',          
 }
 
 //Cores de campos padronizados no prototipo de design
-const field = {
-    primary: '#FFFFFF'
+const inputField = {
+    primary: '#FFFFFF'    
 }
 
 //Opacidade padronizada no prototipo de design
@@ -25,7 +24,7 @@ export const palette = {
     core,
     typography,
     opc,
-    field
+    inputField
 }
 
 

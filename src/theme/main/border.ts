@@ -1,7 +1,11 @@
 //estrutura principal para bordas
-const core = {
-    default: '0',
-    primary: '1px solid #E0E0E0'
+const strut = {
+    small: '1px',
+    medium: '5px'
+}
+
+const type = {
+    primary: 'solid'
 }
 
 //raios padronizados pelo prototipo de design
@@ -15,5 +19,6 @@ const radius = {
 
 export const border = {
     radius,
-    core
+    strut,
+    type
 }
