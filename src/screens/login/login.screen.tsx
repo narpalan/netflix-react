@@ -5,7 +5,10 @@ import Input from '../../components/input/input';
 import FormErr from '../../components/form-error/form-error';
 import { Grid } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from 'yup';
+import { authenticated } from "../../store/user/user.selector";
+import userSlice from "../../store/user/user.slice";
 
 export default function Form(){
 
@@ -27,6 +30,14 @@ export default function Form(){
         },
         [setData]
     )
+    
+    const dispatch = useDispatch()
+
+    const userAuthenticated = useSelector(authenticated)
+
+    useEffect(()=>{
+        console.log(userAuthenticated)
+    },[userAuthenticated])
 
 
     const handleSend = useCallback(
@@ -39,10 +50,13 @@ export default function Form(){
             })
             await schema.validate(data)
             setError('');
+            dispatch(userSlice.actions.authenticated(true))
+
 
             }catch(e: any){
                 //console.log(e.errors);
-                setError(e.errors[0])                
+                setError(e.errors[0])
+                dispatch(userSlice.actions.authenticated(false))                
             }
         },[data]
     )   

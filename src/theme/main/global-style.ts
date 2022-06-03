@@ -1,7 +1,7 @@
 import { createGlobalStyle} from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-body, button{
+body{
     font-family: 'Open Sans', sans-serif;
 }
 `
