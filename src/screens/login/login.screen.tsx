@@ -42,8 +42,7 @@ export default function Form(){
 
     const handleSend = useCallback(
         async ()=>{
-            try{
-            //console.log(data);
+            try{            
             const   schema = yup.object().shape({
                     email: yup.string().required().email(),
                     pswd: yup.string().required()
@@ -53,8 +52,7 @@ export default function Form(){
             dispatch(userSlice.actions.authenticated(true))
 
 
-            }catch(e: any){
-                //console.log(e.errors);
+            }catch(e: any){                
                 setError(e.errors[0])
                 dispatch(userSlice.actions.authenticated(false))                
             }
