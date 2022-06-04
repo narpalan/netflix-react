@@ -1,6 +1,6 @@
 # Bootcamp ETHO - Projeto netflix-react
 
-Esse projeto foi desenvolvido durante o Bootcamp realizado pela ETHO Soluções no período de 30/05/2022 à ... seguindo determinado prototipo fornecido ao inicio do bootcamp.
+Esse projeto foi desenvolvido durante o Bootcamp realizado pela ETHO Soluções no período de 30/05/2022 à ... seguindo determinado protótipo fornecido ao inicio do bootcamp.
 
 ## Skills e respectivas documentações
 
