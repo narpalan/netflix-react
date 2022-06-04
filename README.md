@@ -9,3 +9,7 @@ Esse projeto foi desenvolvido durante o Bootcamp realizado pela ETHO Soluções 
 [<img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">](https://styled-components.com/) 
 [<img src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white">](https://mui.com/pt/)
 [<img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">](https://react-redux.js.org/)
+
+## [Protótipo](https://xd.adobe.com/view/9a195402-0530-4f98-80ee-8b27b0e10759-cf4a/)
+
+
