@@ -1,1 +1,1 @@
-export const MOVIES_LIST_PATH = '/movies'
+export const MOVIES_LIST_PATH = '/movies-list';

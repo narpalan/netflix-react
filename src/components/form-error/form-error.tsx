@@ -1,10 +1,10 @@
-import { ErrStyle } from "./form-error.styled";
+import { ErrStyle } from './form-error.styled';
+import { Props } from './form-error.type';
 
-export default function FormErr(props:any){
-    const {message, ...restProps} = props;    
-    return(
-        <ErrStyle {...restProps}>
-            {message}
-        </ErrStyle>
-    )
+export default function FormErr({ message }:Props) {
+  return (
+    <ErrStyle>
+      {message}
+    </ErrStyle>
+  );
 }

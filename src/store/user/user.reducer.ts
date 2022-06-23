@@ -1,11 +1,22 @@
-//Recebe determinado valor e altera isso no estado global.
+import { PayloadAction } from '@reduxjs/toolkit';
+import { AuthPayload } from 'services/user/user.type';
+import { Data, User } from 'store/user/user.type';
 
-const authenticated = (state: any, action: any)=>{
-    state.authenticated = action.payload;        
-}
+const authentication = (_state: User, _action: PayloadAction<AuthPayload>) => {};
+
+// Recebe determinado valor e altera isso no estado global.
+const setData = (state: User, action: PayloadAction<Data>) => {
+  state.data = action.payload;
+};
+
+const setError = (state: User, action: PayloadAction<User['error']>) => {
+  state.error = action.payload;
+};
 
 const reducers = {
-    authenticated
-}
+  setData,
+  setError,
+  authentication,
+};
 
 export default reducers;

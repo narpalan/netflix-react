@@ -1,27 +1,23 @@
-//Cores principais padronizadas no prototipo de design
-const core ={
-    primary: '#E31A13',
-    secondary: '#1A1A1A',
-    input: '#FFFFFF'          
-}
+// Cores principais padronizadas no prototipo de design
+const core = {
+  primary: '#E31A13',
+  secondary: '#1A1A1A',
+  input: '#FFFFFF',
+};
 
-
-//Opacidade padronizada no prototipo de design
+// Opacidade padronizada no prototipo de design
 const opc = {
-    primary: '0.95'
-}
+  primary: '0.95',
+};
 
-//Escrita padronizada no prototipo...
+// Escrita padronizada no prototipo...
 const typography = {
-    primary: '#FFFFFF',
-    contrast: '#868D96'
-}
+  primary: '#FFFFFF',
+  contrast: '#868D96',
+};
 
 export const palette = {
-    core,
-    typography,
-    opc    
-}
-
-
-
+  core,
+  typography,
+  opc,
+};

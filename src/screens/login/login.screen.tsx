@@ -1,75 +1,82 @@
-//import { Wrapper } from "./login.styled";
-import FWrapper from "../../components/grid/grid";
-import Button from "../../components/button/button";
+// Libs and external
+import React, {
+  useCallback, useEffect, useState, ChangeEvent,
+} from 'react';
+import { Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Types
+import { Error } from 'types/yup';
+
+// Utilities
+import { tokenSelector } from '../../store/user/user.selector';
+import userSlice from '../../store/user/user.slice';
+import { loginSchema } from './login.schema';
+
+// Components
+
 import Input from '../../components/input/input';
 import FormErr from '../../components/form-error/form-error';
-import { Grid } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as yup from 'yup';
-import { authenticated } from "../../store/user/user.selector";
-import userSlice from "../../store/user/user.slice";
+import { ButtonStyled } from '../../components/button/button.styled';
+import FWrapper from '../../components/grid/grid';
 
-export default function Form(){
+export default function Form() {
+  const [data, setData] = useState({
+    email: '',
+    pswd: '',
+  });
 
-    const [data, setData] = useState({
-        email:'',
-        pswd:''
-    })
+  const [error, setError] = useState('');
 
-    const [error, setError] = useState('')
+  const dispatch = useDispatch();
+  const userAuthenticated = useSelector(tokenSelector);
 
-    //useCallback persiste a função passada
-    const handleChange = useCallback(        
-        ({target}: any)=>{                    
-            setData(prevData=>({
-            ...prevData,                        
-            //input alterado pelo usuário
-            [target.name]: target.value
-            }))                   
-        },
-        [setData]
-    )
-    
-    const dispatch = useDispatch()
+  const handleChange = useCallback(
+    ({ target }: ChangeEvent<HTMLInputElement>) => {
+      setData((prevData) => ({
+        ...prevData,
+        [target.name]: target.value,
+      }));
+    },
+    [setData],
+  );
 
-    const userAuthenticated = useSelector(authenticated)
+  const resetError = useCallback(
+    (errorMessage: string) => {
+      setError(errorMessage);
+    },
+    [],
+  );
 
-    useEffect(()=>{
-        console.log(userAuthenticated)
-    },[userAuthenticated])
+  const handleSend = useCallback(
+    async () => {
+      try {
+        const schema = loginSchema;
+        await schema.validate(data);
+        resetError('');
+        dispatch(userSlice.actions.authentication(data));
+      } catch (yupError: any) {
+        setError((yupError as Error).errors[0]);
+      }
+    },
+    [data],
+  );
 
+  useEffect(() => {
+    console.log(userAuthenticated);
+  }, [userAuthenticated]);
 
-    const handleSend = useCallback(
-        async ()=>{
-            try{            
-            const   schema = yup.object().shape({
-                    email: yup.string().required().email(),
-                    pswd: yup.string().required()
-            })
-            await schema.validate(data)
-            setError('');
-            dispatch(userSlice.actions.authenticated(true))
+  return (
+    <FWrapper container alignContent="center" justifyContent="center">
+      <Grid item xs={2}>
+        <Grid container>
+          <Input type="email" name="email" placeHolder="E-mail" onChange={handleChange} />
+          <Input type="password" name="pswd" placeHolder="Senha" onChange={handleChange} />
+          <ButtonStyled onClick={handleSend}>Entrar</ButtonStyled>
+          <FormErr message={error} />
+        </Grid>
+      </Grid>
+    </FWrapper>
 
-
-            }catch(e: any){                
-                setError(e.errors[0])
-                dispatch(userSlice.actions.authenticated(false))                
-            }
-        },[data]
-    )   
-
-    return(
-        <FWrapper container alignContent='center' justifyContent='center'> 
-            <Grid item xs={2}> 
-                <Grid container>                                                
-                    <Input type='email' name='email' placeholder="E-mail" onChange={handleChange}/>
-                    <Input type='password' name='pswd' placeholder="Senha" onChange={handleChange}/>
-                    <Button onClick={handleSend}>Entrar</Button>                                                                      
-                    <FormErr message={error}/>
-                </Grid>
-            </Grid>           
-        </FWrapper>
-
-    )
+  );
 }

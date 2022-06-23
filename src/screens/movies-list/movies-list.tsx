@@ -1,4 +1,3 @@
-export default function MoviesList(){
-    return (<p> Olá </p>)
-
+export default function MoviesList() {
+  return (<p> Olá </p>);
 }

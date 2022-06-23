@@ -1,10 +1,10 @@
-//import { createSelector } from "@reduxjs/toolkit";
+import { Store } from 'store/store/store.type';
 
-export const authenticated = (state:any) => state.user.authenticated;
+export const tokenSelector = (state:Store) => !!state.user.data.token;
 
 /*
 export const authenticated =  (state:any) => {
-    //altera a referencia de state.user.authenticated   
+    //altera a referencia de state.user.authenticated
     const isLogged = !state.user.authenticated
     return isLogged
 }

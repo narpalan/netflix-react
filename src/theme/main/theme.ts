@@ -1,11 +1,11 @@
-import { palette } from "./palette";
-import { border } from "./border";
-//import animation from "./animation";
-//import border
+import { palette } from './palette';
+import { border } from './border';
+// import animation from "./animation";
+// import border
 
 const theme = {
-    palette,
-    border    
-}
+  palette,
+  border,
+};
 
-export default theme
+export default theme;
