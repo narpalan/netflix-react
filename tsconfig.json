@@ -26,9 +26,7 @@
       "modules/*":["src/modules/*"],
       "types/*":["src/types/*"],
       "services/*":["src/services/*"],
-      "components/*":["src/components/*"],
-      
-      
+      "components/*":["src/components/*"],     
     }
   },
   "include": ["src"]

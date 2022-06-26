@@ -1,3 +1,4 @@
+import React from 'react';
 import { ErrStyle } from './form-error.styled';
 import { Props } from './form-error.type';
 

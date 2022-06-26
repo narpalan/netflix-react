@@ -1,24 +1,35 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
 import userService from '../../services/user/user';
-import { AuthErrorMessage, AuthPayload, AuthResponse } from '../../services/user/user.type';
+import { AuthPayload, AuthResponse, ErrorMessageEnum } from '../../services/user/user.type';
 import userSlice, { initialState } from './user.slice';
+import { USER_TOKEN_COOKIE } from './user.type';
 
 function* authentication(action: PayloadAction<AuthPayload>) {
   try {
-    const response: AuthResponse = yield call(userService().auth, action.payload);
-    yield put(userSlice.actions.setData(response.data));
+    const res: AuthResponse = yield call(userService().auth, action.payload);
+    yield put(userSlice.actions.setData(res.data));
     yield put(userSlice.actions.setError(initialState.error));
+    localStorage.setItem(USER_TOKEN_COOKIE, res.data.token);
   } catch (exception) {
-    yield put(userSlice.actions.setError(AuthErrorMessage.UNREACHABLE_AUTHENTICATION));
+    // @ts-ignore
+    const { res: { data } } = exception as AxiosError;
+    // @ts-ignore
+    yield put(userSlice.actions.setError(ErrorMessageEnum[data?.message] || ''));
   }
 }
 
-function* sanitizeValues() {
-  yield put(userSlice.actions.setError(''));
+function* logoff() {
+  const { data } = userSlice.getInitialState();
+  yield put(userSlice.actions.setData(data));
+  localStorage.removeItem(USER_TOKEN_COOKIE);
 }
 
-export default function* userSaga() {
-  yield takeLatest('user/authentication', authentication);
-  yield takeLatest('user/cart', sanitizeValues);
-}
+const userSaga = [
+  takeLatest('user/authentication', authentication),
+  takeLatest('user/logoff', logoff),
+];
+
+export default userSaga;

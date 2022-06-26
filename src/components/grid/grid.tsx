@@ -6,6 +6,7 @@
  *
  */
 
+import React from 'react';
 import { Wrapper } from './grid.styled';
 import { Props } from './grid.type';
 

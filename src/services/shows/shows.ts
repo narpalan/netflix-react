@@ -1,11 +1,20 @@
 import axiosInstance from '../../modules/axios/axios';
-import { GetShowsPayload } from './shows.type';
+import { Props } from './shows.type';
 
-const showService = () => {
-  const show = (payload: GetShowsPayload) => axiosInstance.get('/shows', payload);
+const showsService = ({ token }: Props) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const getList = () => axiosInstance.get('/shows', config);
+  const getMyList = () => axiosInstance.get('/list', config);
+
   return {
-    show,
+    getList,
+    getMyList,
   };
 };
 
-export default showService;
+export default showsService;

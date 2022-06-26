@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { AuthPayload } from 'services/user/user.type';
-import { Data, User } from 'store/user/user.type';
+import { AuthPayload } from '../../services/user/user.type';
+import { Data, User } from './user.type';
 
 const authentication = (_state: User, _action: PayloadAction<AuthPayload>) => {};
 

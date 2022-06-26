@@ -19,9 +19,8 @@ module.exports = {
       'react',
       '@typescript-eslint',
     ],
-    rules:{
-        'import/prefer-default-export': 'off',
-        "react/react-in-jsx-scope": "off",
+    rules:{ 
+        'import/prefer-default-export': 'off',              
         'no-param-reassign':[
           'error',{
             props:true,

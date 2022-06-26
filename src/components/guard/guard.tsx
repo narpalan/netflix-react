@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import { tokenSelector } from 'store/user/user.selector';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
 import { Props } from './guard.type';
+import { tokenSelector } from '../../store/user/user.selector';
 import { LOGIN_PATH } from '../../screens/login/login.type';
 
 export default function Guard({ children } : Props) {

@@ -1,26 +1,38 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { GetShowsPayload } from 'services/shows/shows.type';
 import {
-  Data, GetShowsList, SetData, SetError, SetSettings, Shows,
+  GetList,
+  SetList,
+  SetError,
+  SetSettings,
+  SetMyList,
 } from './shows.type';
 
-const getShowList: GetShowsList = (_state: Shows, _action: PayloadAction<undefined>) => {};
+const getList: GetList = (_state, _action) => {};
 
-const setData: SetData = (state: Shows, action: PayloadAction<Data>) => {
-  state.data = action.payload;
+const getMyList: GetList = (_state, _action) => {};
+
+const setList: SetList = (state, action) => {
+  state.data.list = action.payload;
 };
 
-const setError: SetError = (state: Shows, action: PayloadAction<Shows['error']>) => {
+const setMyList: SetMyList = (state, action) => {
+  state.data.myList = action.payload;
+};
+
+const setError: SetError = (state, action) => {
   state.error = action.payload;
 };
 
-const setSettings: SetSettings = () => {};
+const setSettings: SetSettings = (state, action) => {
+  state.settings = { ...state.settings, ...action.payload };
+};
 
 const reducers = {
-  setData,
+  getList,
+  setList,
   setError,
   setSettings,
-  getShowList,
+  getMyList,
+  setMyList,
 };
 
 export default reducers;

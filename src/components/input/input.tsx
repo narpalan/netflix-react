@@ -1,3 +1,4 @@
+import React from 'react';
 import { InputStyled } from './input.styled';
 import { Props } from './input.type';
 
